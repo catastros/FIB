@@ -9,14 +9,14 @@ script:
   - docker run -e CI=true juanmrg/react-test npm test
 
 after_success:
-  - docker build -t juanmrg/milti-client -f ./client
-  - docker build -t juanmrg/milti-nginx -f ./nginx
-  - docker build -t juanmrg/milti-server -f ./server
-  - docker build -t juanmrg/milti-worker -f ./worker
+  - docker build -t juanmrg/multi-client ./client
+  - docker build -t juanmrg/multi-nginx ./nginx
+  - docker build -t juanmrg/multi-server ./server
+  - docker build -t juanmrg/multi-worker ./worker
   # Log in to the docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # Take those images and pushthem to docker hub
-  - docker push juanmrg/milti-client
-  - docker push juanmrg/milti-nginx
-  - docker push juanmrg/milti-server
-  - docker push juanmrg/milti-worker
+  - docker push juanmrg/multi-client
+  - docker push juanmrg/multi-nginx
+  - docker push juanmrg/multi-server
+  - docker push juanmrg/multi-worker
